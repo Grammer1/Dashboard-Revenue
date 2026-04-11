@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
 
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -33,12 +33,28 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function RevenueForecast({ onLogout }) {
-  const [streams, setStreams] = useState(DEFAULT_STREAMS);
+  const [streams, setStreams] = useState(() => {
+  try {
+    const saved = localStorage.getItem("streams");
+    return saved ? JSON.parse(saved) : DEFAULT_STREAMS;
+  } catch (err) {
+    console.error("Failed to load streams:", err);
+    return DEFAULT_STREAMS;
+  }
+});
   const [selectedStream, setSelectedStream] = useState(1);
   const [editingName, setEditingName] = useState(null);
   const [growthRate, setGrowthRate] = useState(null);
   const [newStreamName, setNewStreamName] = useState("");
   const [showAddStream, setShowAddStream] = useState(false);
+
+useEffect(() => {
+    try {
+      localStorage.setItem("streams", JSON.stringify(streams));
+    } catch (err) {
+      console.error("Failed to save streams:", err);
+    }
+  }, [streams]);
 
   const chartData = useMemo(() =>
     MONTHS.map((month, i) => {
