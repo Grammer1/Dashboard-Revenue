@@ -170,6 +170,36 @@ useEffect(() => {
             <div style={{ fontSize: 12, color: growth >= 0 ? "#00C9A7" : "#FF6B6B" }}>
               {growth >= 0 ? "▲" : "▼"} {Math.abs(growth)}% H2 vs H1
             </div>
+            <button
+    onClick={() => {
+      localStorage.removeItem("auth");
+      onLogout();
+    }}
+    style={{
+      marginTop: 12,
+      padding: "6px 12px",
+      borderRadius: 8,
+      border: "1px solid rgba(255,255,255,0.08)",
+      background: "rgba(255,255,255,0.03)",
+      color: "#00C9A7",
+      cursor: "pointer",
+      fontSize: 11,
+      fontFamily: "'DM Mono', monospace",
+      letterSpacing: 1,
+      textTransform: "uppercase",
+      transition: "all 0.15s ease"
+    }}
+    onMouseEnter={e => {
+      e.target.style.background = "rgba(0,201,167,0.08)";
+      e.target.style.borderColor = "#00C9A7";
+    }}
+    onMouseLeave={e => {
+      e.target.style.background = "rgba(255,255,255,0.03)";
+      e.target.style.borderColor = "rgba(255,255,255,0.08)";
+    }}
+  >
+    Logout
+  </button>
           </div>
         </div>
 
