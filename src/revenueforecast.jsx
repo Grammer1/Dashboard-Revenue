@@ -6,6 +6,16 @@ import { generateInsights } from "./services/aiInsightService";
 import { simpleForecast } from "./utils/forecast";
 import revenueData from "./data/revenueData";
 
+export default function RevenueForecast({ onLogout }) {
+
+  const insights = useMemo(() => {
+    return generateInsights(revenueData);
+  }, []);
+
+  const forecast = useMemo(() => {
+    return simpleForecast(revenueData, 7);
+  }, []);
+
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 const DEFAULT_STREAMS = [
@@ -37,16 +47,6 @@ const CustomTooltip = ({ active, payload, label }) => {
   );
 };
 
-export default function RevenueForecast({ onLogout }) {
-  const [streams, setStreams] = useState(() => {
-  try {
-    const saved = localStorage.getItem("streams");
-    return saved ? JSON.parse(saved) : DEFAULT_STREAMS;
-  } catch (err) {
-    console.error("Failed to load streams:", err);
-    return DEFAULT_STREAMS;
-  }
-});
   const [selectedStream, setSelectedStream] = useState(1);
   const [editingName, setEditingName] = useState(null);
   const [growthRate, setGrowthRate] = useState(null);
