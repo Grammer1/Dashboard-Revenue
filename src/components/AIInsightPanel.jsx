@@ -1,31 +1,101 @@
-// src/components/AIInsightPanel.jsx
+export default function AIInsightPanel({ insights = [] }) {
+  const theme = {
+    bg: "rgba(255,255,255,0.02)",
+    border: "rgba(255,255,255,0.07)",
+    text: "#e8f0fa",
+    muted: "#7a9bbf",
+    accent: "#00C9A7",
+    warning: "#FF6B6B",
+  };
 
-export default function AIInsightPanel({ insights }) {
+  const getColor = (type) => {
+    switch (type) {
+      case "positive":
+        return theme.accent;
+      case "warning":
+        return theme.warning;
+      default:
+        return theme.muted;
+    }
+  };
+
   return (
-    <div className="grid gap-3">
-      {insights.map((insight, i) => (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 10,
+      }}
+    >
+      {insights.length === 0 && (
         <div
-          key={i}
-          className={`p-4 rounded-xl border shadow-sm ${
-            insight.type === "positive"
-              ? "border-green-500 bg-green-50"
-              : insight.type === "warning"
-              ? "border-yellow-500 bg-yellow-50"
-              : "border-red-500 bg-red-50"
-          }`}
+          style={{
+            color: theme.muted,
+            fontSize: 13,
+            fontFamily: "'DM Mono', monospace",
+          }}
         >
-          <div className="flex justify-between items-center">
-            <p className="font-semibold text-sm">🤖 AI Insight</p>
-            <span className="text-xs opacity-60">
-              {(insight.confidence * 100).toFixed(0)}%
+          No insights available
+        </div>
+      )}
+
+      {insights.map((item, index) => (
+        <div
+          key={index}
+          style={{
+            background: theme.bg,
+            border: `1px solid ${theme.border}`,
+            borderRadius: 12,
+            padding: "12px 14px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 6,
+          }}
+        >
+          {/* CATEGORY + CONFIDENCE */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontSize: 11,
+              fontFamily: "'DM Mono', monospace",
+              color: theme.muted,
+              letterSpacing: 1,
+              textTransform: "uppercase",
+            }}
+          >
+            <span style={{ color: getColor(item.type) }}>
+              {item.category}
             </span>
+
+            <span>{Math.round((item.confidence || 0) * 100)}%</span>
           </div>
 
-          <p className="mt-2 text-sm">{insight.message}</p>
+          {/* MESSAGE */}
+          <div
+            style={{
+              fontSize: 13,
+              color: theme.text,
+              fontFamily: "'DM Sans', sans-serif",
+              lineHeight: 1.4,
+            }}
+          >
+            {item.message}
+          </div>
 
-          <p className="text-xs mt-2 opacity-60">
-            Category: {insight.category}
-          </p>
+          {/* ACCENT BAR */}
+          <div
+            style={{
+              height: 2,
+              width: "100%",
+              background: `linear-gradient(90deg, ${getColor(
+                item.type
+              )}, transparent)`,
+              borderRadius: 999,
+              opacity: 0.6,
+            }}
+          />
         </div>
       ))}
     </div>
