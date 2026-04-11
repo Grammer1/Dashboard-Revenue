@@ -129,6 +129,27 @@ useEffect(() => {
     localStorage.removeItem("auth");
     onLogout();
   }}
+  style={{
+    padding: "8px 14px",
+    borderRadius: 8,
+    border: "1px solid rgba(255,255,255,0.08)",
+    background: "rgba(255,255,255,0.03)",
+    color: "#00C9A7",
+    cursor: "pointer",
+    fontSize: 12,
+    fontFamily: "'DM Mono', monospace",
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    transition: "all 0.15s ease"
+  }}
+  onMouseEnter={e => {
+    e.target.style.background = "rgba(0,201,167,0.08)";
+    e.target.style.borderColor = "#00C9A7";
+  }}
+  onMouseLeave={e => {
+    e.target.style.background = "rgba(255,255,255,0.03)";
+    e.target.style.borderColor = "rgba(255,255,255,0.08)";
+  }}
 >
   Logout
 </button>
