@@ -124,36 +124,49 @@ useEffect(() => {
 
       {/* Header */}
 
-      <button
-    onClick={() => {
-      localStorage.removeItem("auth");
-      onLogout();
-    }}
-    style={{
-      marginTop: 12,
-      padding: "6px 12px",
-      borderRadius: 8,
-      border: "1px solid rgba(255,255,255,0.08)",
-      background: "rgba(255,255,255,0.03)",
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+  <div style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 24
+  }}>
+
+    {/* LEFT — minimal brand */}
+    <div style={{
+      fontSize: 12,
+      letterSpacing: 3,
       color: "#00C9A7",
-      cursor: "pointer",
-      fontSize: 11,
       fontFamily: "'DM Mono', monospace",
-      letterSpacing: 1,
-      textTransform: "uppercase",
-      transition: "all 0.15s ease"
-    }}
-    onMouseEnter={e => {
-      e.target.style.background = "rgba(0,201,167,0.08)";
-      e.target.style.borderColor = "#00C9A7";
-    }}
-    onMouseLeave={e => {
-      e.target.style.background = "rgba(255,255,255,0.03)";
-      e.target.style.borderColor = "rgba(255,255,255,0.08)";
-    }}
-  >
-    Logout
-  </button>
+      textTransform: "uppercase"
+    }}>
+      Primo
+    </div>
+
+    {/* RIGHT — logout */}
+    <button
+      onClick={() => {
+        localStorage.removeItem("auth");
+        onLogout();
+      }}
+      style={{
+        padding: "6px 12px",
+        borderRadius: 8,
+        border: "1px solid rgba(255,255,255,0.08)",
+        background: "rgba(255,255,255,0.03)",
+        color: "#00C9A7",
+        cursor: "pointer",
+        fontSize: 11,
+        fontFamily: "'DM Mono', monospace",
+        letterSpacing: 1,
+        textTransform: "uppercase"
+      }}
+    >
+      Logout
+    </button>
+
+  </div>
+</div>
 
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32 }}>
