@@ -135,7 +135,11 @@ useEffect(() => {
             </h1>
           </div>
           <div style={{ textAlign: "right" }}>
-            <button
+            <div style={{ fontSize: 11, color: "#7a9bbf", fontFamily: "'DM Mono', monospace", marginBottom: 4 }}>ANNUAL PROJECTION</div>
+            <div style={{ fontSize: 28, fontFamily: "'DM Mono', monospace", color: "#00C9A7", fontWeight: 500 }}>{fmt(annualTotal)}</div>
+            <div style={{ fontSize: 12, color: growth >= 0 ? "#00C9A7" : "#FF6B6B" }}>
+              {growth >= 0 ? "▲" : "▼"} {Math.abs(growth)}% H2 vs H1
+             <button
     onClick={() => {
       localStorage.removeItem("auth");
       onLogout();
@@ -165,10 +169,6 @@ useEffect(() => {
   >
     Logout
   </button>
-            <div style={{ fontSize: 11, color: "#7a9bbf", fontFamily: "'DM Mono', monospace", marginBottom: 4 }}>ANNUAL PROJECTION</div>
-            <div style={{ fontSize: 28, fontFamily: "'DM Mono', monospace", color: "#00C9A7", fontWeight: 500 }}>{fmt(annualTotal)}</div>
-            <div style={{ fontSize: 12, color: growth >= 0 ? "#00C9A7" : "#FF6B6B" }}>
-              {growth >= 0 ? "▲" : "▼"} {Math.abs(growth)}% H2 vs H1
             </div>          
           </div>
         </div>
