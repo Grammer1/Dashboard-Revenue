@@ -20,6 +20,11 @@ const fmtFull = (n) => `$${Number(n).toLocaleString()}`;
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   const total = payload.reduce((s, p) => s + (p.value || 0), 0);
+
+console.log("STREAMS:", streams);
+console.log("CURRENT:", currentStream);
+console.log("INSIGHTS:", insights);
+
   return (
     <div style={{ background: "#0f1923", border: "1px solid #1e3048", borderRadius: 10, padding: "12px 16px", minWidth: 180 }}>
       <div style={{ color: "#7a9bbf", fontSize: 12, marginBottom: 8, fontFamily: "'DM Mono', monospace" }}>{label}</div>
@@ -116,7 +121,7 @@ useEffect(() => {
   const prevTotal = totals.slice(0,6).reduce((a,b)=>a+b,0);
   const nextTotal = totals.slice(6).reduce((a,b)=>a+b,0);
   const growth = prevTotal ? ((nextTotal - prevTotal) / prevTotal * 100).toFixed(1) : 0;
-
+  
   return (
     <div style={{
       minHeight: "100vh",
