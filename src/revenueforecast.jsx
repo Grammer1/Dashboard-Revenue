@@ -32,7 +32,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   );
 };
 
-export default function RevenueForecast() {
+export default function RevenueForecast({ onLogout }) {
   const [streams, setStreams] = useState(DEFAULT_STREAMS);
   const [selectedStream, setSelectedStream] = useState(1);
   const [editingName, setEditingName] = useState(null);
@@ -111,7 +111,7 @@ export default function RevenueForecast() {
       <button
   onClick={() => {
     localStorage.removeItem("auth");
-    window.location.reload();
+    onLogout();
   }}
 >
   Logout

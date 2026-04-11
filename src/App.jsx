@@ -15,10 +15,10 @@ function App() {
   }
 
   return (
-    <div>
-      <RevenueForecast />
-    </div>
-  );
+  <div>
+    <RevenueForecast onLogout={() => setIsAuth(false)} />
+  </div>
+);
 }
 
 export default App;
