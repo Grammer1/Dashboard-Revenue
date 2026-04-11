@@ -6,17 +6,6 @@ import { generateInsights } from "./services/aiInsightService";
 import { simpleForecast } from "./utils/forecast";
 import revenueData from "./data/revenueData";
 
-function RevenueForecast() {
-  const insights = useMemo(() => {
-    return generateInsights(revenueData);
-  }, []);
-
- console.log("INSIGHTS:", insights);
-
-  const forecast = useMemo(() => {
-    return simpleForecast(revenueData, 7);
-  }, []);
-}
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 const DEFAULT_STREAMS = [
