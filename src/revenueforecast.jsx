@@ -123,7 +123,7 @@ useEffect(() => {
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 
       {/* Header */}
-      
+
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32 }}>
           <div>
@@ -135,11 +135,6 @@ useEffect(() => {
             </h1>
           </div>
           <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: 11, color: "#7a9bbf", fontFamily: "'DM Mono', monospace", marginBottom: 4 }}>ANNUAL PROJECTION</div>
-            <div style={{ fontSize: 28, fontFamily: "'DM Mono', monospace", color: "#00C9A7", fontWeight: 500 }}>{fmt(annualTotal)}</div>
-            <div style={{ fontSize: 12, color: growth >= 0 ? "#00C9A7" : "#FF6B6B" }}>
-              {growth >= 0 ? "▲" : "▼"} {Math.abs(growth)}% H2 vs H1
-            </div>
             <button
     onClick={() => {
       localStorage.removeItem("auth");
@@ -170,6 +165,11 @@ useEffect(() => {
   >
     Logout
   </button>
+            <div style={{ fontSize: 11, color: "#7a9bbf", fontFamily: "'DM Mono', monospace", marginBottom: 4 }}>ANNUAL PROJECTION</div>
+            <div style={{ fontSize: 28, fontFamily: "'DM Mono', monospace", color: "#00C9A7", fontWeight: 500 }}>{fmt(annualTotal)}</div>
+            <div style={{ fontSize: 12, color: growth >= 0 ? "#00C9A7" : "#FF6B6B" }}>
+              {growth >= 0 ? "▲" : "▼"} {Math.abs(growth)}% H2 vs H1
+            </div>          
           </div>
         </div>
 
