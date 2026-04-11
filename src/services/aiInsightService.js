@@ -14,62 +14,35 @@ export function generateInsights(data) {
     ];
   }
 
-  const latest = data[data.length - 1];
-  const previous = data[data.length - 2];
+ const sorted = [...data].sort((a, b) => b.revenue - a.revenue);
 
-  const growth =
-    ((latest.revenue - previous.revenue) / previous.revenue) * 100;
+const top = sorted[0];
+const bottom = sorted[sorted.length - 1];
 
-  // Revenue trend insight
-  if (growth > 0) {
-    insights.push({
-      type: "positive",
-      category: "revenue",
-      message: `Revenue naik ${growth.toFixed(1)}% dibanding periode sebelumnya`,
-      confidence: 0.85,
-    });
-  } else {
-    insights.push({
-      type: "warning",
-      category: "revenue",
-      message: `Revenue turun ${Math.abs(growth).toFixed(1)}% dibanding periode sebelumnya`,
-      confidence: 0.85,
-    });
-  }
+const total = data.reduce((sum, item) => sum + item.revenue, 0);
 
-  // Simple anomaly detection
-  const avg =
-    data.reduce((sum, item) => sum + item.revenue, 0) / data.length;
+ insights.push({
+  type: "positive",
+  category: "ranking",
+  message: `${top.name} adalah kontributor utama dengan ${((top.revenue / total) * 100).toFixed(1)}% dari total revenue`,
+  confidence: 0.9,
+});
 
-  const deviation = ((latest.revenue - avg) / avg) * 100;
+  insights.push({
+    type: "warning",
+    category: "ranking",
+    message: `${bottom.name} memiliki kontribusi terendah dan perlu optimasi strategi`,
+    confidence: 0.85,
+  });
 
-  if (Math.abs(deviation) > 20) {
-    insights.push({
-      type: "warning",
-      category: "anomaly",
-      message: `Terjadi anomali: revenue berbeda ${deviation.toFixed(
-        1
-      )}% dari rata-rata`,
-      confidence: 0.7,
-    });
-  }
+  const gap = top.revenue - bottom.revenue;
 
-  // Momentum insight
-  if (latest.revenue > previous.revenue) {
-    insights.push({
-      type: "positive",
-      category: "trend",
-      message: "Momentum bisnis sedang naik (bullish trend)",
-      confidence: 0.8,
-    });
-  } else {
-    insights.push({
-      type: "warning",
-      category: "trend",
-      message: "Momentum bisnis melemah (bearish trend)",
-      confidence: 0.8,
-    });
-  }
+  insights.push({
+    type: "warning",
+    category: "gap",
+    message: `Gap antara stream tertinggi dan terendah sebesar ${gap.toLocaleString()}`,
+    confidence: 0.8,
+  });
 
   return insights;
 }
