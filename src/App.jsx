@@ -1,9 +1,8 @@
-// FORCE CHANGE TEST 999
-import revenueforecast from "./revenueforecast";
+import RevenueForecast from "./revenueforecast";
 
 function App() {
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       <RevenueForecast />
     </div>
   );
