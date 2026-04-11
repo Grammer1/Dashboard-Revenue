@@ -11,6 +11,8 @@ function RevenueForecast() {
     return generateInsights(revenueData);
   }, []);
 
+ console.log("INSIGHTS:", insights);
+
   const forecast = useMemo(() => {
     return simpleForecast(revenueData, 7);
   }, []);
