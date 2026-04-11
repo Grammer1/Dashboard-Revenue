@@ -107,6 +107,16 @@ export default function RevenueForecast() {
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 
       {/* Header */}
+
+      <button
+  onClick={() => {
+    localStorage.removeItem("auth");
+    window.location.reload();
+  }}
+>
+  Logout
+</button>
+
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32 }}>
           <div>
