@@ -21,10 +21,6 @@ const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   const total = payload.reduce((s, p) => s + (p.value || 0), 0);
 
-console.log("STREAMS:", streams);
-console.log("CURRENT:", currentStream);
-console.log("INSIGHTS:", insights);
-
   return (
     <div style={{ background: "#0f1923", border: "1px solid #1e3048", borderRadius: 10, padding: "12px 16px", minWidth: 180 }}>
       <div style={{ color: "#7a9bbf", fontSize: 12, marginBottom: 8, fontFamily: "'DM Mono', monospace" }}>{label}</div>
@@ -58,6 +54,16 @@ export default function RevenueForecast({ onLogout }) {
   const [newStreamName, setNewStreamName] = useState("");
   const [showAddStream, setShowAddStream] = useState(false);
 
+  const aiData = useMemo(() => {
+  return streams.map(s => ({
+    revenue: s.values.reduce((a, b) => a + b, 0),
+  }));
+}, [streams]);
+
+const insights = useMemo(() => {
+  return generateInsights(aiData);
+}, [aiData]);
+
 useEffect(() => {
     try {
       localStorage.setItem("streams", JSON.stringify(streams));
@@ -77,7 +83,7 @@ useEffect(() => {
     streams.reduce((acc, s) => s.values.map((v, i) => (acc[i] || 0) + v), []), [streams]);
 
   const annualTotal = totals.reduce((a, b) => a + b, 0);
-  const currentStream = streams.find(s => s.id === selectedStream); streams[0];
+  const currentStream = streams.find(s => s.id === selectedStream);
 
   const updateValue = (monthIdx, raw) => {
     const val = parseFloat(raw.replace(/[^0-9.]/g, "")) || 0;
