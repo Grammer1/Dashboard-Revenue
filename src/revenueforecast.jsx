@@ -124,22 +124,7 @@ useEffect(() => {
 
       {/* Header */}
 
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32 }}>
-          <div>
-            <div style={{ fontSize: 11, letterSpacing: 4, color: "#00C9A7", fontFamily: "'DM Mono', monospace", marginBottom: 6, textTransform: "uppercase" }}>
-              Revenue Forecast
-            </div>
-            <h1 style={{ margin: 0, fontSize: 32, fontFamily: "'Playfair Display', serif", fontWeight: 700, letterSpacing: -0.5 }}>
-              12-Month Outlook
-            </h1>
-          </div>
-          <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: 11, color: "#7a9bbf", fontFamily: "'DM Mono', monospace", marginBottom: 4 }}>ANNUAL PROJECTION</div>
-            <div style={{ fontSize: 28, fontFamily: "'DM Mono', monospace", color: "#00C9A7", fontWeight: 500 }}>{fmt(annualTotal)}</div>
-            <div style={{ fontSize: 12, color: growth >= 0 ? "#00C9A7" : "#FF6B6B" }}>
-              {growth >= 0 ? "▲" : "▼"} {Math.abs(growth)}% H2 vs H1
-             <button
+      <button
     onClick={() => {
       localStorage.removeItem("auth");
       onLogout();
@@ -169,6 +154,22 @@ useEffect(() => {
   >
     Logout
   </button>
+
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32 }}>
+          <div>
+            <div style={{ fontSize: 11, letterSpacing: 4, color: "#00C9A7", fontFamily: "'DM Mono', monospace", marginBottom: 6, textTransform: "uppercase" }}>
+              Revenue Forecast
+            </div>
+            <h1 style={{ margin: 0, fontSize: 32, fontFamily: "'Playfair Display', serif", fontWeight: 700, letterSpacing: -0.5 }}>
+              12-Month Outlook
+            </h1>
+          </div>
+          <div style={{ textAlign: "right" }}>
+            <div style={{ fontSize: 11, color: "#7a9bbf", fontFamily: "'DM Mono', monospace", marginBottom: 4 }}>ANNUAL PROJECTION</div>
+            <div style={{ fontSize: 28, fontFamily: "'DM Mono', monospace", color: "#00C9A7", fontWeight: 500 }}>{fmt(annualTotal)}</div>
+            <div style={{ fontSize: 12, color: growth >= 0 ? "#00C9A7" : "#FF6B6B" }}>
+              {growth >= 0 ? "▲" : "▼"} {Math.abs(growth)}% H2 vs H1
             </div>          
           </div>
         </div>
