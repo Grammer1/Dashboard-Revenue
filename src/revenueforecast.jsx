@@ -6,6 +6,15 @@ import { generateInsights } from "./services/aiInsightService";
 import { simpleForecast } from "./utils/forecast";
 import revenueData from "./data/revenueData";
 
+function RevenueForecast() {
+  const insights = useMemo(() => {
+    return generateInsights(revenueData);
+  }, []);
+
+  const forecast = useMemo(() => {
+    return simpleForecast(revenueData, 7);
+  }, []);
+}
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 const DEFAULT_STREAMS = [
@@ -291,6 +300,28 @@ useEffect(() => {
               </button>
           }
         </div>
+
+        {/* AI INSIGHT SECTION */}
+<div style={{
+  marginTop: 32,
+  padding: 24,
+  background: "rgba(255,255,255,0.02)",
+  border: "1px solid rgba(255,255,255,0.07)",
+  borderRadius: 16
+}}>
+  <div style={{
+    fontSize: 13,
+    color: "#00C9A7",
+    fontFamily: "'DM Mono', monospace",
+    marginBottom: 12,
+    letterSpacing: 2,
+    textTransform: "uppercase"
+  }}>
+    AI Insight Engine
+  </div>
+
+  <AIInsightPanel insights={insights} />
+</div>
 
         {/* Monthly editor */}
         {currentStream && (
