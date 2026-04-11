@@ -72,7 +72,7 @@ useEffect(() => {
     streams.reduce((acc, s) => s.values.map((v, i) => (acc[i] || 0) + v), []), [streams]);
 
   const annualTotal = totals.reduce((a, b) => a + b, 0);
-  const currentStream = streams.find(s => s.id === selectedStream);
+  const currentStream = streams.find(s => s.id === selectedStream); streams[0];
 
   const updateValue = (monthIdx, raw) => {
     const val = parseFloat(raw.replace(/[^0-9.]/g, "")) || 0;
