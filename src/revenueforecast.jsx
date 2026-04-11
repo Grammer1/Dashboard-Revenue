@@ -188,24 +188,35 @@ useEffect(() => {
         </div>
 
         {/* KPI row */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 32 }}>
-          {[
-            { label: "Best Month", value: fmt(Math.max(...totals)), sub: MONTHS[totals.indexOf(Math.max(...totals))] },
-            { label: "Avg / Month", value: fmt(Math.round(annualTotal / 12)), sub: "across all streams" },
-            { label: "H2 Growth", value: `${growth}%`, sub: "vs first half" },
-          ].map(kpi => (
-            <div key={kpi.label} style={{
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              borderRadius: 12,
-              padding: "16px 20px",
-            }}>
-              <div style={{ fontSize: 11, color: "#7a9bbf", fontFamily: "'DM Mono', monospace", letterSpacing: 2, marginBottom: 6, textTransform: "uppercase" }}>{kpi.label}</div>
-              <div style={{ fontSize: 22, fontFamily: "'DM Mono', monospace", color: "#e8f0fa" }}>{kpi.value}</div>
-              <div style={{ fontSize: 12, color: "#4a6b8a", marginTop: 2 }}>{kpi.sub}</div>
-            </div>
-          ))}
-        </div>
+<div style={{ 
+  display: "grid", 
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gap: 16, 
+  marginBottom: 32 
+}}>
+  {[
+    { label: "Best Month", value: fmt(Math.max(...totals)), sub: MONTHS[totals.indexOf(Math.max(...totals))] },
+    { label: "Avg / Month", value: fmt(Math.round(annualTotal / 12)), sub: "across all streams" },
+    { label: "H2 Growth", value: `${growth}%`, sub: "vs first half" },
+  ].map(kpi => (
+    <div key={kpi.label} style={{
+      background: "rgba(255,255,255,0.03)",
+      border: "1px solid rgba(255,255,255,0.07)",
+      borderRadius: 12,
+      padding: "16px 20px",
+    }}>
+      <div style={{ fontSize: 11, color: "#7a9bbf", fontFamily: "'DM Mono', monospace", letterSpacing: 2, marginBottom: 6, textTransform: "uppercase" }}>
+        {kpi.label}
+      </div>
+      <div style={{ fontSize: 22, fontFamily: "'DM Mono', monospace", color: "#e8f0fa" }}>
+        {kpi.value}
+      </div>
+      <div style={{ fontSize: 12, color: "#4a6b8a", marginTop: 2 }}>
+        {kpi.sub}
+      </div>
+    </div>
+  ))}
+</div>
 
         {/* Chart */}
         <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, padding: "24px 16px 16px", marginBottom: 32 }}>
@@ -295,7 +306,7 @@ useEffect(() => {
                 </button>
               </div>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 10 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 10 }}>
               {MONTHS.map((month, i) => (
                 <div key={month}>
                   <div style={{ fontSize: 10, color: "#4a6b8a", fontFamily: "'DM Mono', monospace", letterSpacing: 1, marginBottom: 4, textTransform: "uppercase" }}>{month}</div>
