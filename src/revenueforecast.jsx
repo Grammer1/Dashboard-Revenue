@@ -1,6 +1,11 @@
 import { useState, useMemo, useEffect } from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
 
+import AIInsightPanel from "./components/AIInsightPanel";
+import { generateInsights } from "./services/aiInsightService";
+import { simpleForecast } from "./utils/forecast";
+import revenueData from "./data/revenueData";
+
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 const DEFAULT_STREAMS = [
