@@ -124,7 +124,12 @@ useEffect(() => {
 
       {/* Header */}
 
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{
+  width: "100%",
+  maxWidth: 1400,
+  margin: "0 auto",
+  padding: "0 24px"
+}}>
   <div style={{
     display: "flex",
     justifyContent: "space-between",
@@ -168,7 +173,12 @@ useEffect(() => {
   </div>
 </div>
 
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{
+  width: "100%",
+  maxWidth: 1400,
+  margin: "0 auto",
+  padding: "0 24px"
+}}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32 }}>
           <div>
             <div style={{ fontSize: 11, letterSpacing: 4, color: "#00C9A7", fontFamily: "'DM Mono', monospace", marginBottom: 6, textTransform: "uppercase" }}>
